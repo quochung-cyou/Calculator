@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MayTinh</string>
+    <string name="Maytinh_add"><font color='#de766f'>+</font></string>
+    <string name="Maytinh_sub"><font color='#de766f'>-</font></string>
+    <string name="Maytinh_div"><font color='#de766f'>/</font></string>
+    <string name="Maytinh_mul"><font color='#de766f'>x</font></string>
+</resources>
