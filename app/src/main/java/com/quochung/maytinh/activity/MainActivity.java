@@ -1,6 +1,7 @@
 package com.quochung.maytinh.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -92,20 +93,33 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 lightdarkmode.setSelectedItemId(R.id.darkmode);
+
             }
         }
 
         lightdarkmode.setOnItemSelectedListener(item -> {
             SharedPreferences.Editor editor = lightdarksave.edit();
+            Intent intent = getIntent();
             switch(item.getItemId()){
                 case R.id.lightmode:
 
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+                    overridePendingTransition(0, 0);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    finish();
+                    overridePendingTransition(1, 0);
+                    startActivity(intent);
                     editor.putString("datadb", "light");
                     editor.apply();
                     break;
                 case R.id.darkmode:
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    overridePendingTransition(0, 0);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    finish();
+                    overridePendingTransition(1, 0);
+                    startActivity(intent);
                     editor = lightdarksave.edit();
                     editor.putString("datadb", "dark");
 

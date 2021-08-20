@@ -4,6 +4,7 @@
     <color name="background">#FFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="green">#8fd776</color>
     <color name="colorButton">#000000</color>
     <color name="graysel">#b5b1a7</color>
 </resources>
