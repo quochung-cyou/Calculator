@@ -4,6 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -34,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         lightdarkmode();
         calculatorinit();
+
+
 
 
     }
@@ -140,8 +145,43 @@ public class MainActivity extends AppCompatActivity {
         buttondot = findViewById(R.id.buttondot);
         hienthi = findViewById(R.id.edt1);
         hienthitop = findViewById(R.id.edttop);
+        hienthitop.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+            }
 
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(hienthi.getLineCount() > 1){
+                    hienthi.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                }
+            }
+        });
+        hienthi.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(hienthi.getLineCount() > 1){
+                    hienthi.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                }
+            }
+        });
         button1.setOnClickListener(v -> hienthi.setText(hienthi.getText() + "1"));
 
         button2.setOnClickListener(v -> hienthi.setText(hienthi.getText() + "2"));
@@ -170,7 +210,13 @@ public class MainActivity extends AppCompatActivity {
                 assert false;
                 hienthi.setText("0");
             } else {
-                mValueOne = Float.parseFloat(hienthi.getText() + "");
+                try {
+                    mValueOne = Float.parseFloat(hienthi.getText() + "");
+                } catch (NumberFormatException ex) {
+                    hienthitop.setText("ERROR");
+                    return;
+                }
+
                 Maddition = true;
                 hienthitop.setText(hienthi.getText() + " +");
                 hienthi.setText(null);
@@ -178,21 +224,36 @@ public class MainActivity extends AppCompatActivity {
         });
 
         buttonSub.setOnClickListener(v -> {
-            mValueOne = Float.parseFloat(hienthi.getText() + "");
+            try {
+                mValueOne = Float.parseFloat(hienthi.getText() + "");
+            } catch (NumberFormatException ex) {
+                hienthitop.setText("ERROR");
+                return;
+            }
             mSubtract = true;
             hienthitop.setText(hienthi.getText() + " -");
             hienthi.setText(null);
         });
 
         buttonMul.setOnClickListener(v -> {
-            mValueOne = Float.parseFloat(hienthi.getText() + "");
+            try {
+                mValueOne = Float.parseFloat(hienthi.getText() + "");
+            } catch (NumberFormatException ex) {
+                hienthitop.setText("ERROR");
+                return;
+            }
             MMul = true;
             hienthitop.setText(hienthi.getText() + " x");
             hienthi.setText(null);
         });
 
         buttonDivision.setOnClickListener(v -> {
-            mValueOne = Float.parseFloat(hienthi.getText() + "");
+            try {
+                mValueOne = Float.parseFloat(hienthi.getText() + "");
+            } catch (NumberFormatException ex) {
+                hienthitop.setText("ERROR");
+                return;
+            }
             MDiv = true;
             hienthitop.setText(hienthi.getText() + " /");
             hienthi.setText(null);
@@ -200,7 +261,13 @@ public class MainActivity extends AppCompatActivity {
 
         buttonEqual.setOnClickListener(v -> {
             if (!String.valueOf(hienthi.getText()).isEmpty()) {
-                mValueTwo = Float.parseFloat(hienthi.getText() + "");
+                try {
+                    mValueTwo = Float.parseFloat(hienthi.getText() + "");
+                } catch (NumberFormatException ex) {
+                    hienthitop.setText("ERROR");
+                    return;
+                }
+
             }
 
 
